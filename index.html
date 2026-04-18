@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sahana Enterprises – Premium Medical & Surgical Supplies in Hyderabad. Disposable gowns, PPE kits, drapes and more." />
+  <meta name="keywords" content="medical supplies, surgical gown, PPE kit, Hyderabad, Sahana Enterprises" />
+  <title>Sahana Enterprises | Medical & Surgical Supplies</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* =============================================
+       CSS VARIABLES & RESET
+    ============================================= */
+    :root {
+      --green-dark:   #0a5c3a;
+      --green-mid:    #12834f;
+      --green-light:  #1aad6a;
+      --green-pale:   #e6f7ef;
+      --accent:       #f0a500;
+      --white:        #ffffff;
+      --gray-100:     #f4f6f5;
+      --gray-300:     #c8d4ce;
+      --gray-700:     #3d4f47;
+      --text:         #1c2b25;
+      --shadow:       0 8px 32px rgba(10,92,58,.12);
+      --radius:       14px;
+      --transition:   .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+
+    /* =============================================
+       UTILITY
+    ============================================= */
+    .container { width: 90%; max-width: 1180px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: .55rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--green-dark);
+      line-height: 1.22;
+      margin-bottom: 1.1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.02rem;
+      color: var(--gray-700);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.75rem;
+      border-radius: 50px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--green-mid);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(18,131,79,.35); }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--white);
+      color: var(--white);
+    }
+    .btn-outline:hover { background: var(--white); color: var(--green-dark); transform: translateY(-2px); }
+
+    .btn-accent {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .btn-accent:hover { background: #d4900a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(240,165,0,.35); }
+
+    /* scroll-reveal helper */
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal-left.visible  { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .65s ease, transform .65s ease; }
+    .reveal-right.visible { opacity: 1; transform: none; }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+    }
+
+    #navbar.scrolled {
+      background: var(--white);
+      box-shadow: 0 2px 20px rgba(0,0,0,.1);
+      padding: .6rem 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--green-mid);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .logo-text { line-height: 1.2; }
+    .logo-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    .logo-text span {
+      font-size: .7rem;
+      letter-spacing: .08em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    /* scrolled – keep gold always */
+    #navbar.scrolled .logo-text strong { color: var(--accent); }
+    #navbar.scrolled .logo-text span   { color: var(--gray-700); }
+
+    /* default (hero) – white */
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--white);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 2px;
+      background: var(--green-light);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:hover { color: var(--green-light); }
+
+    #navbar.scrolled .nav-links a { color: var(--gray-700); }
+    #navbar.scrolled .nav-links a:hover { color: var(--green-mid); }
+
+    .nav-cta { display: flex; align-items: center; gap: .8rem; }
+    .nav-cta .btn-nav {
+      padding: .55rem 1.3rem;
+      border-radius: 50px;
+      font-size: .85rem;
+      font-weight: 600;
+      background: var(--green-mid);
+      color: var(--white);
+      border: 2px solid var(--green-mid);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .nav-cta .btn-nav:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    #navbar.scrolled .hamburger span { background: var(--green-dark); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--green-dark);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      transition: color var(--transition);
+    }
+    .mobile-nav a:hover { color: var(--green-light); }
+    .mobile-nav-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 1.8rem;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* =============================================
+       HERO SLIDER
+    ============================================= */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 620px;
+      overflow: hidden;
+    }
+
+    .slider-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+    }
+
+    /* Each slide uses a gradient overlay + unsplash image */
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .slide.active { opacity: 1; }
+
+    /* Overlay for all slides */
+    .slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,92,58,.82) 0%, rgba(10,92,58,.45) 60%, rgba(0,0,0,.2) 100%);
+    }
+
+    /* Slide images via Unsplash */
+    .slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=1600&q=80'); }
+    .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1576765607924-3f7b8410a787?w=1600&q=80'); }
+    .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1559757175-7cb036e0d465?w=1600&q=80'); }
+    .slide:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1600&q=80'); }
+
+    /* Slider dots */
+    .slider-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .6rem;
+      z-index: 10;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.4);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .dot.active { background: var(--white); width: 24px; border-radius: 4px; }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-text { max-width: 640px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.15);
+      backdrop-filter: blur(8px);
+      color: var(--white);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .4rem 1rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,.3);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-text h1 span { color: #7de3b0; }
+
+    .hero-text p {
+      color: rgba(255,255,255,.85);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Stats bar */
+    .hero-stats {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,.2);
+    }
+    .hero-stats .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 1.2rem 0;
+      gap: 1rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      color: var(--white);
+      display: block;
+    }
+    .stat-label { font-size: .75rem; color: rgba(255,255,255,.75); text-transform: uppercase; letter-spacing: .08em; }
+
+    /* =============================================
+       ABOUT
+    ============================================= */
+    #about { padding: 6rem 0; background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-main {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      aspect-ratio: 4/3;
+    }
+
+    .about-img-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .about-img-main:hover img { transform: scale(1.04); }
+
+    .about-badge-card {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 12px 40px rgba(10,92,58,.15);
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+    .badge-icon {
+      width: 48px; height: 48px;
+      background: var(--green-pale);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--green-mid);
+      font-size: 1.4rem;
+    }
+    .badge-text strong { display: block; font-size: 1.2rem; color: var(--green-dark); }
+    .badge-text span   { font-size: .78rem; color: var(--gray-700); }
+
+    /* green accent square */
+    .about-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -1rem; left: -1rem;
+      width: 80px; height: 80px;
+      background: var(--green-pale);
+      border-radius: 10px;
+      z-index: -1;
+    }
+
+    .about-features { margin-top: 1.8rem; display: flex; flex-direction: column; gap: .9rem; }
+    .feature-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .9rem;
+    }
+    .feature-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--green-pale);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--green-mid);
+      font-size: 1rem;
+    }
+    .feature-row p { font-size: .92rem; color: var(--gray-700); line-height: 1.6; }
+    .feature-row strong { color: var(--text); }
+
+    /* =============================================
+       PRODUCTS
+    ============================================= */
+    #products { padding: 6rem 0; background: var(--gray-100); }
+
+    .products-header { text-align: center; margin-bottom: 3rem; }
+    .products-header .section-subtitle { margin: 0 auto; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.4rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 14px rgba(10,92,58,.07);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-mid), var(--green-light));
+      transform: scaleX(0);
+      transition: transform var(--transition);
+      transform-origin: left;
+    }
+
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,92,58,.14); }
+    .product-card:hover::before { transform: scaleX(1); }
+
+    .prod-icon {
+      width: 58px; height: 58px;
+      background: var(--green-pale);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: var(--green-mid);
+      font-size: 1.6rem;
+      margin: 0 auto 1rem;
+      transition: background var(--transition), color var(--transition);
+    }
+    .product-card:hover .prod-icon { background: var(--green-mid); color: var(--white); }
+
+    .product-card h3 { font-size: .92rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .product-card p  { font-size: .78rem; color: var(--gray-700); margin-top: .35rem; }
+
+    /* =============================================
+       WHY CHOOSE US
+    ============================================= */
+    #why { padding: 5rem 0; background: var(--green-dark); overflow: hidden; position: relative; }
+
+    #why::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .why-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: background var(--transition);
+    }
+    .why-card:hover { background: rgba(255,255,255,.12); }
+
+    .why-icon {
+      width: 52px; height: 52px;
+      background: var(--green-light);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    .why-card h3 { color: var(--white); font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+    .why-card p  { color: rgba(255,255,255,.7); font-size: .88rem; line-height: 1.65; }
+
+    .why-header { text-align: center; margin-bottom: 3rem; }
+    .why-header .section-label { color: #7de3b0; }
+    .why-header .section-title { color: var(--white); }
+    .why-header .section-subtitle { color: rgba(255,255,255,.75); margin: 0 auto; }
+
+    /* =============================================
+       CONTACT
+    ============================================= */
+    #contact { padding: 6rem 0; background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p { color: var(--gray-700); line-height: 1.75; margin-bottom: 2rem; font-size: .95rem; }
+
+    .info-list { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .info-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--green-pale);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--green-mid);
+      font-size: 1rem;
+    }
+    .info-item div strong { display: block; font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-700); margin-bottom: .15rem; }
+    .info-item div a, .info-item div span { color: var(--text); font-size: .93rem; }
+    .info-item div a:hover { color: var(--green-mid); }
+
+    /* Map */
+    .map-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-top: 1.5rem;
+      height: 200px;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+    /* Form */
+    .contact-form-wrap {
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+
+    .contact-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--green-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: .82rem; font-weight: 600; color: var(--gray-700); margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .07em; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid var(--gray-300);
+      border-radius: 9px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .93rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(18,131,79,.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit .btn { width: 100%; justify-content: center; font-size: 1rem; padding: .85rem; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    #footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,.8);
+      padding: 4rem 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .footer-brand .logo { margin-bottom: 1.1rem; }
+    .footer-brand .logo-text strong,
+    .footer-brand .logo-text span { color: var(--white); }
+    .footer-brand p { font-size: .88rem; line-height: 1.75; }
+
+    .footer-gstin {
+      margin-top: 1rem;
+      background: rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: .6rem 1rem;
+      font-size: .78rem;
+      color: rgba(255,255,255,.6);
+    }
+    .footer-gstin span { color: rgba(255,255,255,.9); font-weight: 600; }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 0;
+      width: 28px; height: 2px;
+      background: var(--green-light);
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .footer-links a { font-size: .88rem; color: rgba(255,255,255,.7); transition: color var(--transition); }
+    .footer-links a:hover { color: var(--white); padding-left: 4px; }
+
+    .social-links { display: flex; gap: .8rem; margin-top: 1.2rem; }
+    .social-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-size: .9rem;
+      transition: var(--transition);
+    }
+    .social-btn:hover { background: var(--green-light); transform: translateY(-3px); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 1.2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: .8rem;
+      color: rgba(255,255,255,.5);
+    }
+    .footer-bottom a { color: var(--green-light); }
+
+    /* =============================================
+       FLOATING BUTTONS
+    ============================================= */
+    .float-btns {
+      position: fixed;
+      bottom: 2rem;
+      right: 1.5rem;
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .float-btn {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-size: 1.3rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,.25);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .float-btn:hover { transform: scale(1.1); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+
+    .float-wa  { background: #25d366; }
+    .float-tel { background: var(--green-mid); }
+
+    /* tooltip */
+    .float-btn::before {
+      content: attr(data-tip);
+      position: absolute;
+      right: 60px;
+      background: rgba(0,0,0,.75);
+      color: var(--white);
+      font-size: .75rem;
+      white-space: nowrap;
+      padding: .3rem .7rem;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }
+    .float-btn:hover::before { opacity: 1; }
+
+    /* Back to top */
+    #back-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 1.5rem;
+      z-index: 900;
+      width: 42px; height: 42px;
+      background: var(--green-mid);
+      color: var(--white);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: .9rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+      box-shadow: 0 4px 14px rgba(0,0,0,.2);
+    }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+    #back-top:hover { transform: translateY(-3px); }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .about-grid   { gap: 2.5rem; }
+      .contact-grid { gap: 2rem; }
+      .footer-grid  { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .about-grid    { grid-template-columns: 1fr; }
+      .about-img-wrap { order: -1; }
+      .about-badge-card { right: 0; }
+
+      .contact-grid  { grid-template-columns: 1fr; }
+      .form-row      { grid-template-columns: 1fr; }
+
+      .footer-grid   { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .hero-stats .container { flex-wrap: wrap; gap: 1.5rem; }
+
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn { width: 100%; justify-content: center; }
+      .about-badge-card { position: static; margin-top: 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav id="navbar" aria-label="Main Navigation">
+    <div class="container nav-inner">
+      <!-- Logo -->
+      <a href="#hero" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-kit-medical"></i></div>
+        <div class="logo-text">
+          <strong>Sahana Enterprises</strong>
+          <span>Medical &amp; Surgical Supplies</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <div class="nav-cta">
+        <a href="tel:8919210960" class="btn-nav btn"><i class="fa-solid fa-phone"></i> Call Now</a>
+      </div>
+
+      <!-- Hamburger -->
+      <div class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <span class="mobile-nav-close" id="mobileClose"><i class="fa-solid fa-xmark"></i></span>
+    <a href="#about"    class="mob-link">About</a>
+    <a href="#products" class="mob-link">Products</a>
+    <a href="#why"      class="mob-link">Why Us</a>
+    <a href="#contact"  class="mob-link">Contact</a>
+    <a href="tel:8919210960" class="btn btn-primary"><i class="fa-solid fa-phone"></i> 8919210960</a>
+  </div>
+
+
+  <!-- ============ HERO SLIDER ============ -->
+  <section id="hero" aria-label="Hero">
+    <!-- Slides -->
+    <div class="slider-wrap" id="sliderWrap">
+      <div class="slide active"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+    </div>
+
+    <!-- Dots -->
+    <div class="slider-dots" id="sliderDots">
+      <div class="dot active" data-idx="0"></div>
+      <div class="dot" data-idx="1"></div>
+      <div class="dot" data-idx="2"></div>
+      <div class="dot" data-idx="3"></div>
+    </div>
+
+    <!-- Hero content -->
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i>&nbsp; ISO Certified Supplier</div>
+        <h1>Premium <span>Medical &amp;<br>Surgical</span> Supplies</h1>
+        <p>Sahana Enterprises delivers high-quality disposable medical products across Hyderabad and beyond — from surgeon gowns and PPE kits to specialised drapes for every procedure.</p>
+        <div class="hero-btns">
+          <a href="#products" class="btn btn-primary"><i class="fa-solid fa-box-open"></i> View Products</a>
+          <a href="#" id="downloadBrochure" class="btn btn-outline"><i class="fa-solid fa-file-arrow-down"></i> Download Brochure</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero-stats">
+      <div class="container">
+        <div class="stat">
+          <span class="stat-num">20+</span>
+          <span class="stat-label">Product Lines</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">500+</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">24/7</span>
+          <span class="stat-label">Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Image -->
+        <div class="about-img-wrap reveal-left">
+          <div class="about-img-main">
+            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80" alt="Medical supply team" loading="lazy" />
+          </div>
+          <div class="about-badge-card">
+            <div class="badge-icon"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="badge-text">
+              <strong>Arman Khan</strong>
+              <span>Proprietor</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="reveal-right">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">Trusted Partner for Healthcare Professionals</h2>
+          <p class="section-subtitle">Sahana Enterprises is a Hyderabad-based medical supply company committed to providing reliable, high-quality disposable surgical and hospital products that meet the highest safety standards.</p>
+
+          <div class="about-features">
+            <div class="feature-row">
+              <div class="feature-icon"><i class="fa-solid fa-certificate"></i></div>
+              <p><strong>Quality Assured</strong> — All our products meet stringent quality standards and are sourced from certified manufacturers to ensure patient safety.</p>
+            </div>
+            <div class="feature-row">
+              <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+              <p><strong>Fast Delivery</strong> — We offer prompt dispatch across Hyderabad and surrounding regions so your facility never runs short.</p>
+            </div>
+            <div class="feature-row">
+              <div class="feature-icon"><i class="fa-solid fa-handshake"></i></div>
+              <p><strong>Customer First</strong> — Dedicated support and competitive pricing for hospitals, clinics, and medical institutions of all sizes.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="#contact" class="btn btn-primary">Get a Quote</a>
+            <a href="tel:8919210960" class="btn" style="background:var(--green-pale);color:var(--green-dark);border-color:transparent;">
+              <i class="fa-solid fa-phone"></i> 8919210960
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ PRODUCTS ============ -->
+  <section id="products">
+    <div class="container">
+      <div class="products-header reveal">
+        <span class="section-label">Our Products</span>
+        <h2 class="section-title">Complete Surgical Supply Range</h2>
+        <p class="section-subtitle">From individual protective gear to comprehensive surgical pack systems — we stock everything your facility needs.</p>
+      </div>
+
+      <div class="products-grid">
+        <!-- Each card: icon + name + short note -->
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-vest"></i></div>
+          <h3>Disposable Surgeon Gown</h3>
+          <p>Sterile &amp; fluid-resistant</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-person-shelter"></i></div>
+          <h3>Isolation Gown</h3>
+          <p>Full-body protection</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-head-side-mask"></i></div>
+          <h3>Face Mask</h3>
+          <p>3-ply &amp; N95 options</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-hat-cowboy"></i></div>
+          <h3>Bouffant Cap</h3>
+          <p>Non-woven, breathable</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-socks"></i></div>
+          <h3>Shoe Cover</h3>
+          <p>Slip-resistant sole</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-bed"></i></div>
+          <h3>Bed Sheet</h3>
+          <p>Disposable &amp; hygienic</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-shield-virus"></i></div>
+          <h3>PPE Kit</h3>
+          <p>Complete protection set</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-vial-virus"></i></div>
+          <h3>HIV Kit</h3>
+          <p>Safe &amp; rapid testing</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-kit-medical"></i></div>
+          <h3>Major Pack</h3>
+          <p>Full surgical procedure</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-bone"></i></div>
+          <h3>General Ortho Pack</h3>
+          <p>Orthopaedic procedure</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-scalpel"></i></div>
+          <h3>General OT Pack</h3>
+          <p>Operation theatre ready</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Lamino Spinal Drape</h3>
+          <p>Spine procedure drape</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h3>CABG Drape Pack</h3>
+          <p>Cardiac bypass surgery</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-eye"></i></div>
+          <h3>Orthoscopy</h3>
+          <p>Arthroscopic procedure</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-person-walking"></i></div>
+          <h3>HIP U Drape</h3>
+          <p>Hip replacement drape</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+          <h3>Leg O Drape</h3>
+          <p>Lower limb procedures</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-circle-nodes"></i></div>
+          <h3>Knee O Drape</h3>
+          <p>Knee surgery specialist</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-arrows-to-dot"></i></div>
+          <h3>TKR</h3>
+          <p>Total Knee Replacement</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-person-dots-from-line"></i></div>
+          <h3>THR</h3>
+          <p>Total Hip Replacement</p>
+        </div>
+        <div class="product-card reveal">
+          <div class="prod-icon"><i class="fa-solid fa-droplet"></i></div>
+          <h3>LACS Drape</h3>
+          <p>Laparoscopic procedure</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ WHY CHOOSE US ============ -->
+  <section id="why">
+    <div class="container">
+      <div class="why-header reveal">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">The Sahana Advantage</h2>
+        <p class="section-subtitle">We go beyond just supplying products — we become an extension of your healthcare team.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-medal"></i></div>
+          <h3>Certified Quality</h3>
+          <p>All products comply with BIS, CE &amp; ISO standards, ensuring safe outcomes in every procedure.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-tags"></i></div>
+          <h3>Competitive Pricing</h3>
+          <p>Bulk discounts and institutional pricing without compromising on product quality or safety.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
+          <h3>Dedicated Support</h3>
+          <p>Our team is available round the clock to handle urgent orders and any post-delivery concerns.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+          <h3>Wide Product Range</h3>
+          <p>20+ SKUs covering everything from basic PPE to complex specialised surgical drape packs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:3rem;">
+        <span class="section-label">Contact Us</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Have a query or want to place an order? Reach out to us — we respond promptly.</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Info -->
+        <div class="reveal-left">
+          <div class="info-list">
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <strong>Address</strong>
+                <span>2ND 3-5-87/0, Harsha Hospital Road,<br>No. 5, Hyderabad – 500 027</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <strong>Mobile</strong>
+                <a href="tel:8919210960">+91 8919210960</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:nazmullakhan@gmail.com">nazmullakhan@gmail.com</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-solid fa-file-invoice"></i></div>
+              <div>
+                <strong>GSTIN</strong>
+                <span>36DJJPK0635NIZV</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <div>
+                <strong>Proprietor</strong>
+                <span>Arman Khan</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.773193707248!2d78.47194647455256!3d17.43200650111591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99c3c0000001%3A0xf00000000000001!2sHarsha%20Hospital%20Rd%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Sahana Enterprises Location"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form-wrap reveal-right">
+          <h3>Send an Enquiry</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Arjun" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Sharma" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="you@hospital.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+91 98765 43210" />
+          </div>
+          <div class="form-group">
+            <label for="product">Product Interested In</label>
+            <select id="product">
+              <option value="">– Select Product –</option>
+              <option>Disposable Surgeon Gown</option>
+              <option>Isolation Gown</option>
+              <option>Face Mask</option>
+              <option>Bouffant Cap</option>
+              <option>Shoe Cover</option>
+              <option>Bed Sheet</option>
+              <option>PPE Kit</option>
+              <option>HIV Kit</option>
+              <option>Major Pack</option>
+              <option>General Ortho Pack</option>
+              <option>General OT Pack</option>
+              <option>Lamino Spinal Drape</option>
+              <option>CABG Drape Pack</option>
+              <option>Orthoscopy</option>
+              <option>HIP U Drape</option>
+              <option>Leg O Drape</option>
+              <option>Knee O Drape</option>
+              <option>TKR</option>
+              <option>THR</option>
+              <option>LACS Drape</option>
+              <option>Other / Multiple</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Describe your requirements, quantity needed, etc."></textarea>
+          </div>
+          <div class="form-submit">
+            <button class="btn btn-primary" onclick="handleSubmit(event)">
+              <i class="fa-solid fa-paper-plane"></i> Send Enquiry
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-kit-medical"></i></div>
+            <div class="logo-text">
+              <strong>Sahana Enterprises</strong>
+              <span>Medical &amp; Surgical Supplies</span>
+            </div>
+          </div>
+          <p>Your trusted partner for premium disposable surgical and medical supplies in Hyderabad. Quality, reliability, and care — delivered to your doorstep.</p>
+          <div class="footer-gstin">GSTIN: <span>36DJJPK0635NIZV</span></div>
+          <div class="social-links">
+            <a href="https://wa.me/918919210960" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:nazmullakhan@gmail.com" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:8919210960" class="social-btn" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Our Products</a></li>
+            <li><a href="#why">Why Choose Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#" id="footerBrochure">Download Brochure</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="tel:8919210960"><i class="fa-solid fa-phone" style="width:16px;"></i> +91 8919210960</a></li>
+            <li><a href="mailto:nazmullakhan@gmail.com"><i class="fa-solid fa-envelope" style="width:16px;"></i> nazmullakhan@gmail.com</a></li>
+            <li style="color:rgba(255,255,255,.7);font-size:.88rem;line-height:1.7;">
+              <i class="fa-solid fa-location-dot" style="width:16px;"></i>
+              2ND 3-5-87/0, Harsha Hospital Rd,<br>No. 5, Hyderabad
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2024 Sahana Enterprises. All rights reserved.</span>
+        <span>Designed for excellence in healthcare supply.</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============ FLOATING BUTTONS ============ -->
+  <div class="float-btns">
+    <a href="https://wa.me/918919210960?text=Hello%20Sahana%20Enterprises%2C%20I%20would%20like%20to%20enquire%20about%20your%20products."
+       class="float-btn float-wa" aria-label="Chat on WhatsApp" data-tip="WhatsApp Us" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="tel:8919210960" class="float-btn float-tel" aria-label="Call us" data-tip="Call Now">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
+
+  <!-- Back to top -->
+  <div id="back-top" aria-label="Back to top" role="button" tabindex="0">
+    <i class="fa-solid fa-chevron-up"></i>
+  </div>
+
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    /* ---- Hero Auto-Slider ---- */
+    (function() {
+      const slides = document.querySelectorAll('.slide');
+      const dots   = document.querySelectorAll('.dot');
+      let current  = 0;
+      let timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function autoPlay() {
+        timer = setInterval(() => goTo(current + 1), 3000);
+      }
+
+      // Dot click
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          clearInterval(timer);
+          goTo(+dot.dataset.idx);
+          autoPlay();
+        });
+      });
+
+      autoPlay();
+    })();
+
+
+    /* ---- Sticky Navbar ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+
+    /* ---- Hamburger Mobile Nav ---- */
+    const hamburger  = document.getElementById('hamburger');
+    const mobileNav  = document.getElementById('mobileNav');
+    const mobileClose = document.getElementById('mobileClose');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+
+    mobileClose.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+
+    // Close on link click
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+      });
+    });
+
+
+    /* ---- Scroll Reveal ---- */
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach((el, i) => {
+      // stagger cards
+      if (el.closest('.products-grid') || el.closest('.why-grid')) {
+        el.style.transitionDelay = `${(i % 5) * 0.07}s`;
+      }
+      revealObserver.observe(el);
+    });
+
+
+    /* ---- Back to top ---- */
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+
+    /* ---- Download Brochure (placeholder) ---- */
+    function handleBrochureDownload(e) {
+      e.preventDefault();
+      alert('📄 Brochure download feature coming soon!\n\nFor a product catalogue, please call us at +91 8919210960 or email nazmullakhan@gmail.com');
+    }
+    document.getElementById('downloadBrochure').addEventListener('click', handleBrochureDownload);
+    document.getElementById('footerBrochure').addEventListener('click', handleBrochureDownload);
+
+
+    /* ---- Contact Form Submit ---- */
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name  = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (!name || !email) {
+        alert('Please fill in your name and email address.');
+        return;
+      }
+      // In production, replace with actual API call / form service
+      alert(`✅ Thank you, ${name}!\n\nYour enquiry has been received. We will contact you at ${email} within 24 hours.\n\nFor urgent needs, call us: +91 8919210960`);
+      // Reset fields
+      ['fname','lname','email','phone','product','message'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+    }
+  </script>
+
+</body>
+</html>
